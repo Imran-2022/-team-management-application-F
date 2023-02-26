@@ -11,8 +11,8 @@ const Main = () => {
         <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<PrivateRoute><About /></PrivateRoute>} />
+            <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
             <Route path="/teams" element={<PrivateRoute><Team /></PrivateRoute>} />
             <Route path="/projects" element={<PrivateRoute><Projects /></PrivateRoute>} />
             <Route path="/forget-password" element={<ResetPassword />} />
