@@ -37,7 +37,8 @@ const Login = () => {
         e.preventDefault();
         const { email, password } = inputs;
         setError("");
-
+        // 
+        console.log(process.env.REACT_APP_API_URL);
         login({
             email,
             password,
