@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../../Layout';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRegisterMutation } from '../../features/auth/authApi';
-import Error from '../ui/Error';
 
 const Register = () => {
     const [inputs, setInputs] = useState({
@@ -19,7 +18,6 @@ const Register = () => {
     }
 
 
-    const [agreed, setAgreed] = useState(false);
     const [error, setError] = useState("");
 
     const [register, { data, isLoading, error: responseError }] = useRegisterMutation();
@@ -28,10 +26,10 @@ const Register = () => {
 
     useEffect(() => {
         if (responseError?.data) {
-            setError(responseError.data);
+            setError(responseError?.data);
         }
         if (data?.token && data?.user) {
-            navigate("/");
+            navigate("/teams");
         }
     }, [data, responseError, navigate]);
 
@@ -75,7 +73,9 @@ const Register = () => {
                         <span className="mx-2 text-gray-300">/</span>
                         <Link to="/login" className="text-blue-400 hover:text-blue-500" href="#">Login</Link>
                     </div>
-                    {error !== "" && <p>{error}</p>}
+                    {
+                        error ?<p className='text-center text-red-800 font-bold'>{error}</p>:null
+                    }
                 </form>
             </div>
         </Layout>

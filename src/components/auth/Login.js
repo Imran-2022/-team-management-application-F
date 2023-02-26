@@ -29,7 +29,7 @@ const Login = () => {
             setError(responseError.data);
         }
         if (data?.token && data?.user) {
-            navigate("/");
+            navigate("/teams");
         }
     }, [data, responseError, navigate]);
 
