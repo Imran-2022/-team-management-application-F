@@ -1,4 +1,4 @@
-import { NotFound, Login, Register, Home, About, useAuthCheck, PrivateRoute, PublicRoute, ResetPassword, Team, Projects } from "./AllRoutes";
+import { NotFound, Login, Register, Home, About, useAuthCheck, PrivateRoute, PublicRoute, ResetPassword, Team, Projects, PleaseVerifyEmailPage, EmailVerificationLandingPage } from "./AllRoutes";
 import { Routes, Route } from "react-router-dom";
 
 const Main = () => {
@@ -10,12 +10,15 @@ const Main = () => {
     </div> : (
         <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/verify-email" element={<PleaseVerifyEmailPage />} />
             <Route path="/register" element={<Register />} />
             <Route path="/about" element={<PrivateRoute><About /></PrivateRoute>} />
             <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
             <Route path="/teams" element={<PrivateRoute><Team /></PrivateRoute>} />
             <Route path="/projects" element={<PrivateRoute><Projects /></PrivateRoute>} />
             <Route path="/forget-password" element={<ResetPassword />} />
+            <Route path="/verify-email/:verificationString" element={<EmailVerificationLandingPage />} />
+
             <Route path="*" element={<NotFound />} />
         </Routes>
     );

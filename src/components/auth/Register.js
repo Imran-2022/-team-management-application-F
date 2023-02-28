@@ -29,7 +29,7 @@ const Register = () => {
             setError(responseError?.data);
         }
         if (data?.token && data?.user) {
-            navigate("/teams");
+            navigate("/verify-email");
         }
     }, [data, responseError, navigate]);
 

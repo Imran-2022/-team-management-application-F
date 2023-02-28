@@ -53,9 +53,35 @@ export const authApi = apiSlice.injectEndpoints({
                     // nothing to do ......
                 }
             }
-        })
+        }),
+        verifyEmail: builder.mutation({
+            query: (data) => ({
+                url: "/verify-email",
+                method: "PUT",
+                body: data,
+            }),
+
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                try {
+                    const result = await queryFulfilled;
+                    localStorage.setItem('auth', JSON.stringify({
+                        token: result.data.token,
+                        user: result.data.user
+                    }));
+                    
+                    dispatch(userLoggedIn({
+                        token: result.data.token,
+                        user: result.data.user
+                    }))
+
+
+                } catch (err) {
+                    // do nothing
+                }
+            },
+        }),
 
     })
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation,useVerifyEmailMutation } = authApi;

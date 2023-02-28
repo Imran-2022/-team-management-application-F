@@ -12,6 +12,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 import Team from "./components/team/Team";
 import Projects from "./components/projects/Projects";
+import PleaseVerifyEmailPage from "./components/auth/PleaseVerifyEmailPage";
+import { EmailVerificationLandingPage } from "./components/auth/EmailVerificationLandingPage";
 
 
-export {NotFound,Login,Register,MenuBar,Home,Layout,About,ScrollToTop,ResetPassword,useAuthCheck,PrivateRoute,PublicRoute,Team,Projects}
+export {NotFound,Login,Register,MenuBar,Home,Layout,About,ScrollToTop,ResetPassword,useAuthCheck,PrivateRoute,PublicRoute,Team,Projects,PleaseVerifyEmailPage,EmailVerificationLandingPage}
