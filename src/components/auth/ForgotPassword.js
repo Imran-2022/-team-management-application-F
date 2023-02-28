@@ -1,18 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useResetEmailMutation } from '../../features/auth/authApi';
 
-const ResetPassword = () => {
+const ForgotPassword = () => {
 	const navigate = useNavigate();
-
 	const [userEmail, setUserEmail] = useState('')
-    const handleSubmit = (e) => {
+
+	const [resetEmail, { data, isLoading, error: responseError, isSuccess }] = useResetEmailMutation();
+
+	const handleSubmit = (e) => {
 		e.preventDefault()
-        alert("this page is not cooked yet 🐸")
-        navigate('/login')
+		resetEmail(userEmail)
+	}
+	useEffect(() => {
+		console.log("resetEmailData", data);
+	}, [data])
+
+	if (isSuccess) {
+		setTimeout(() => {
+			navigate('/login')
+		}, 10000)
 	}
 
-    return (
-        <div className="flex flex-col items-center justify-center w-full h-screen bg-gray-200 text-gray-700">
+	if (isLoading) return <div>Loading Brother please wait for  a second !</div>
+
+	return isSuccess ? <div className="flex flex-col items-center justify-center w-full h-screen bg-gray-200 text-gray-700">
+
+		<div className="w-full sm:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
+			<div className="px-8 mb-4 text-center">
+				<h3 className="pt-4 mb-2 text-2xl">Success !</h3>
+				<p className="mb-4 text-sm text-gray-700">
+					Check your Email for a reset Link !
+				</p>
+			</div>
+		</div>
+	</div> : (
+
+		<div className="flex flex-col items-center justify-center w-full h-screen bg-gray-200 text-gray-700">
 
 			<div className="w-full sm:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
 				<div className="px-8 mb-4 text-center">
@@ -23,6 +47,7 @@ const ResetPassword = () => {
 					</p>
 				</div>
 				<form className="px-8 pt-6 pb-8 mb-4 bg-white rounded" onSubmit={handleSubmit}>
+					{responseError !== "" && <p>{responseError}</p>}
 					<div className="mb-4">
 						<label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="email">
 							Email
@@ -64,7 +89,8 @@ const ResetPassword = () => {
 
 			</div>
 		</div>
-    );
+	);
 };
 
-export default ResetPassword;
+
+export default ForgotPassword;
