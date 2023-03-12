@@ -1,20 +1,33 @@
-import React from 'react';
-// import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import Layout from '../../Layout';
+import Modal from './AddTeamModal';
 
 const TeamList = () => {
-    // const {user} = useSelector(state => state.auth);
+    const [openModal, setOpenModal] = useState(false);
+    const controlModal = () => {
+        setOpenModal((prevState) => !prevState);
+    };
+
     return (
-        <Layout title="Login Page" className="bg-[#f5f7f9] h-[89.9vh]">
-            {/* {
-               !user.isVerified? <div className='text-red-600 font-bold'>
-                <p>not varified.</p>
-                <p>you won't be able to make any changes until you verify your email.</p>
-               </div>:<div className='text-yellow-400 font-bold'>verified</div>
-            }
-            <p>Hello from team page</p> */}
-            <div className='w-10/12 m-auto'>
-                <p className='py-2 underline underline-offset-4'>Teams </p>
+        <Layout title="eam List" className="bg-[#f5f7f9] h-[89.9vh]">
+            <div className='w-10/12 m-auto flex py-2 justify-between'>
+                <p className='underline underline-offset-4'>Teams </p>
+
+                <button className="flex items-center justify-center w-6 h-6 ml-auto text-indigo-500 rounded bg-cyan-300 hover:bg-indigo-500 hover:text-indigo-100" onClick={controlModal}>
+                    <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                        ></path>
+                    </svg>
+                </button>
+                <Modal open={openModal} control={controlModal} />
             </div>
         </Layout>
     );
