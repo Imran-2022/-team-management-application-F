@@ -10,11 +10,12 @@ import ForgotPassword from "./components/auth/ForgotPassword";
 import useAuthCheck from "./hooks/useAuthCheck";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
-import Team from "./components/team/Team";
-import Projects from "./components/projects/Projects";
+
 import PleaseVerifyEmailPage from "./components/auth/PleaseVerifyEmailPage";
 import { EmailVerificationLandingPage } from "./components/auth/EmailVerificationLandingPage";
 import PasswordResetLandingPage from "./components/auth/PasswordResetLandingPage";
+import TeamList from "./components/teams/TeamList";
+import ProjectList from "./components/projects/ProjectList";
 
 
-export {NotFound,Login,Register,MenuBar,Home,Layout,About,ScrollToTop,ForgotPassword,useAuthCheck,PrivateRoute,PublicRoute,Team,Projects,PleaseVerifyEmailPage,EmailVerificationLandingPage,PasswordResetLandingPage}
+export { NotFound, Login, Register, MenuBar, Home, Layout, About, ScrollToTop, ForgotPassword, useAuthCheck, PrivateRoute, PublicRoute, ProjectList, PleaseVerifyEmailPage, EmailVerificationLandingPage, PasswordResetLandingPage, TeamList }
