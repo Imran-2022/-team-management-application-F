@@ -2,7 +2,10 @@ import React from 'react';
 import { FaUsers } from 'react-icons/fa';
 import TeamOptions from './TeamOptions';
 
-const Team = () => {
+const Team = ({dt={}}) => {
+
+    const {teamColor,teamDetails,teamName,createdAt,_id}=dt;
+
     return (
         <div className="relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100">
             <TeamOptions />
@@ -10,13 +13,13 @@ const Team = () => {
                 <span
                     className={`absolute w-full h-full rounded-full`}
                     style={{
-                        backgroundColor: 'mediumseagreen',
+                        backgroundColor: teamColor|| 'mediumseagreen',
                         opacity: 0.1,
                     }}
                 ></span>
-                <span className="text-xs font-semibold">Design</span>
+                <span className="text-xs font-semibold">{teamName}</span>
             </div>
-            <p className="mt-3 text-sm font-medium">Design is most important. We can help you to design your idea</p>
+            <p className="mt-3 text-sm font-medium">{teamDetails?.slice(0,90)} ....</p>
             <div className="flex items-center w-full mt-3 text-xs font-medium text-gray-400">
                 <div className="w-full flex items-center justify-between">
                     <div className="flex items-center">
@@ -33,7 +36,7 @@ const Team = () => {
                             />
                         </svg>
                         <span className="ml-1 leading-none">
-                            Feb 25th 2023
+                            {new Date(createdAt).toDateString()}
                         </span>
                     </div>
                     <div className="flex items-center">

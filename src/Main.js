@@ -12,7 +12,7 @@ const Main = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/verify-email" element={<PleaseVerifyEmailPage />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/about" element={<PrivateRoute><About /></PrivateRoute>} />
+            <Route path="/about" element={<About />}/>
             <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
             <Route path="/teams" element={<PrivateRoute><TeamList /></PrivateRoute>} />
             <Route path="/projects" element={<PrivateRoute><ProjectList /></PrivateRoute>} />

@@ -13,3 +13,10 @@
 - sync with server.
 - search bar.(highlight the matched cart by ring-tailwind)(debounce)
 - and more as much functionality possible in real team management application .
+
+
+<!-- do's -->
+1. create team and showing team on home page. > optimistic update. (redux toolkit query).
+2. delete team - passimistic/optimistic.
+3. add member. -(gmail add here).
+

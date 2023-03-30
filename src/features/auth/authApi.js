@@ -6,7 +6,7 @@ export const authApi = apiSlice.injectEndpoints({
         //endpoints here --
         register: builder.mutation({
             query: (data) => ({
-                url: '/registration',
+                url: '/auth/registration',
                 method: 'POST',
                 body: data,
             }),
@@ -31,7 +31,7 @@ export const authApi = apiSlice.injectEndpoints({
         }),
         login: builder.mutation({
             query: (data) => ({
-                url: '/login',
+                url: '/auth/login',
                 method: 'POST',
                 body: data,
             }),
@@ -56,7 +56,7 @@ export const authApi = apiSlice.injectEndpoints({
         }),
         verifyEmail: builder.mutation({
             query: (data) => ({
-                url: "/verify-email",
+                url: "/auth/verify-email",
                 method: "PUT",
                 body: data,
             }),
@@ -82,14 +82,14 @@ export const authApi = apiSlice.injectEndpoints({
         }),
         resetEmail: builder.mutation({
             query: (email) => ({
-                url: `/forgot-password/${email}`,
+                url: `/auth/forgot-password/${email}`,
                 method: "PUT",
             }),
         }),
 
         resetPassword: builder.mutation({
             query: ({new_password,npassword}) => ({
-                url: `/${npassword}/reset-password`,
+                url: `/auth/${npassword}/reset-password`,
                 method: "PUT",
                 body: {new_password},
             }),
