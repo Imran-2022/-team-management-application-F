@@ -3,11 +3,14 @@ import { Fragment, useState } from 'react';
 import { MdDelete } from 'react-icons/md';
 import { IoMdAdd } from 'react-icons/io';
 import AddMemberModal from './AddMemberModal';
+import { useDeleteTeamMutation } from '../../features/team/teamApi';
+import { useDispatch } from 'react-redux';
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
   }
-const TeamOptions = () => {
-
+const TeamOptions = ({id}) => {
+  const [deleteTeam,{isSuccess:deleteSuccess}]=useDeleteTeamMutation();
+  const dispatch=useDispatch()
   const [opened, setOpened] = useState(false);
   const controlModal = () => {
     setOpened((prevState) => !prevState);
@@ -56,7 +59,7 @@ const TeamOptions = () => {
               {(
                 <Menu.Item style={{ width: '100%', textAlign: 'left' }}>
                   {({ active }) => (
-                    <button
+                    <button onClick={()=>dispatch(deleteTeam(id))}
                       className={classNames(
                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                         'px-4 py-2 text-sm flex items-center'
@@ -72,7 +75,7 @@ const TeamOptions = () => {
           </Menu.Items>
         </Transition>
       </Menu>
-      <AddMemberModal open={opened} control={controlModal} />
+      <AddMemberModal open={opened} control={controlModal} id={id}/>
     </>
   );
 };

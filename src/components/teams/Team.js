@@ -4,11 +4,11 @@ import TeamOptions from './TeamOptions';
 
 const Team = ({dt={}}) => {
 
-    const {teamColor,teamDetails,teamName,createdAt,_id}=dt;
+    const {teamColor,teamDetails,teamName,createdAt,_id,teamMembers}=dt;
 
     return (
         <div className="relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100">
-            <TeamOptions />
+            <TeamOptions id={_id} />
             <div className="relative px-4 py-1 flex items-center justify-center">
                 <span
                     className={`absolute w-full h-full rounded-full`}
@@ -41,7 +41,7 @@ const Team = ({dt={}}) => {
                     </div>
                     <div className="flex items-center">
                         <FaUsers className="w-4 h-4 mr-1 fill-gray-300" />
-                        <span className="leading-none">{3}</span>
+                        <span className="leading-none">{teamMembers?.length||0}</span>
                     </div>
                 </div>
             </div>

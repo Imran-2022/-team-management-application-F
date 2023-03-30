@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useGetTeamsQuery } from '../../features/team/teamApi';
+import {useGetTeamsQuery } from '../../features/team/teamApi';
 import Layout from '../../Layout';
 import Modal from './AddTeamModal';
 import Team from './Team';
 
 const TeamList = () => {
     
-    const {data:teams,isSussess,isLoading,isError,error}=useGetTeamsQuery()
+    const {data:teams,isSussess,isLoading,isError,error}=useGetTeamsQuery();
 
     const [openModal, setOpenModal] = useState(false);
     const controlModal = () => {

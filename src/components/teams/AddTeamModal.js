@@ -1,28 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useAddNewTeamMutation } from '../../features/team/teamApi'
 export default function Modal({ open, control }) {
-  const [addNewTeam, { data: teamAdd }] = useAddNewTeamMutation()
+  const [addNewTeam] = useAddNewTeamMutation()
 
   const [teamName, setTeamName] = useState('')
   const [teamDetails, setTeamDetails] = useState('')
   const [teamColor, setTeamColor] = useState('')
-  const [isError, setIsError] = useState("")
 
   const handleForm = () => {
-    addNewTeam({ teamName, teamDetails, teamColor })
+    addNewTeam({ teamName, teamDetails, teamColor,teamMembers:[] })
     control();
-  }
-
-  useEffect(() => {
-    if (teamAdd?.error) {
-      setIsError(teamAdd?.error)
-    } else {
-      setTeamColor('')
+    setTeamColor('')
       setTeamDetails('')
       setTeamName("")
-      setIsError("")
-    }
-  }, [teamAdd])
+  }
 
   return (
     open && (
@@ -33,9 +24,6 @@ export default function Modal({ open, control }) {
         ></div>
         <div className="rounded w-[400px] lg:w-[600px] space-y-8 bg-white  p-10 fixed top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
           <h2 className="text-xl font-mono underline underline-offset-4">Add New Team</h2>
-          {
-            isError&& <p className='text-red-500 text-xs font-mono'>{isError}</p>
-          }
           <form onSubmit={(e) => { e.preventDefault(); handleForm() }}>
             <div className="overflow-hidden  sm:rounded-md">
               <div className="px-4 py-3 sm:p-3 space-y-4">
