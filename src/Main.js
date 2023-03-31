@@ -1,4 +1,4 @@
-import { NotFound, Login, Register, Home, About, useAuthCheck, PrivateRoute, PublicRoute, ForgotPassword, TeamList, Projects, PleaseVerifyEmailPage, EmailVerificationLandingPage, PasswordResetLandingPage, ProjectList } from "./AllRoutes";
+import { NotFound, Login, Register, Home, About, useAuthCheck, PrivateRoute, PublicRoute, ForgotPassword, TeamList,ProjectsDetails, Projects, PleaseVerifyEmailPage, EmailVerificationLandingPage, PasswordResetLandingPage, ProjectList } from "./AllRoutes";
 import { Routes, Route } from "react-router-dom";
 
 const Main = () => {
@@ -19,7 +19,7 @@ const Main = () => {
             <Route path="/forget-password" element={<ForgotPassword />} />
             <Route path="/verify-email/:verificationString" element={<EmailVerificationLandingPage />} />
             <Route path="/new-password/:npassword" element={<PasswordResetLandingPage />} />
-
+            <Route path="/projects/:projectId" element={<ProjectsDetails/>} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     );

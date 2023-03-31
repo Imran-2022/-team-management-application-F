@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import { useDispatch } from 'react-redux';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { userLoggedOut } from './features/auth/authSlice';
 import useAuth from './hooks/useAuth';
+import teamicon from './assets/teamicon.png'
 
 const MenuBar = () => {
     const [menuShow, setMenuShow] = useState(false)
@@ -24,7 +24,7 @@ const MenuBar = () => {
             <nav className="bg-white border-gray-200 lg:mx-60 sm:px-4 py-2.5 rounded">
                 <div className="container flex flex-wrap items-center justify-between mx-auto">
                     <Link to='/teams' className="flex items-center">
-                        <img width="30px" src="teamicon.png" alt="" />
+                        <img width="30px" src={teamicon} alt="" />
                     </Link>
 
                     <div className="flex  md:hidden  items-center md:order-2">

@@ -16,6 +16,7 @@ import { EmailVerificationLandingPage } from "./components/auth/EmailVerificatio
 import PasswordResetLandingPage from "./components/auth/PasswordResetLandingPage";
 import TeamList from "./components/teams/TeamList";
 import ProjectList from "./components/projects/ProjectList";
+import ProjectsDetails from "./components/projects/ProjectsDetails";
 
 
-export { NotFound, Login, Register, MenuBar, Home, Layout, About, ScrollToTop, ForgotPassword, useAuthCheck, PrivateRoute, PublicRoute, ProjectList, PleaseVerifyEmailPage, EmailVerificationLandingPage, PasswordResetLandingPage, TeamList }
+export { NotFound, Login, Register, MenuBar, Home, Layout, About, ScrollToTop, ForgotPassword, useAuthCheck, PrivateRoute, PublicRoute, ProjectList, PleaseVerifyEmailPage, EmailVerificationLandingPage, PasswordResetLandingPage, TeamList,ProjectsDetails }
