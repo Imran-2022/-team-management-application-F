@@ -9,6 +9,7 @@ export const teamApi = apiSlice.injectEndpoints({
         }),
         getTeam: builder.query({
             query: (id) => `/team/${id}`,
+            providesTags: ['team'],
         }),
         addNewTeam: builder.mutation({
             query: (data) => ({
@@ -72,17 +73,16 @@ export const teamApi = apiSlice.injectEndpoints({
 
             },
         }),
-        updateTeam : builder.mutation({
+        updateTeam: builder.mutation({
             query: ({ id, data }) => ({
                 url: `/team/${id}`,
                 method: "PATCH",
                 body: data,
             }),
+            invalidatesTags: ['team'],
             async onQueryStarted({ id, data }, { queryFulfilled, dispatch }) {
                 try {
                     const result = await queryFulfilled;
-                    console.log("result",);
-                    // start pessimistic way ->
 
                     dispatch(
                         apiSlice.util.updateQueryData(
@@ -91,7 +91,7 @@ export const teamApi = apiSlice.injectEndpoints({
                             (draft) => {
                                 return draft.map(dt => {
                                     if (dt._id == id) {
-                                        return {...dt,teamMembers:result.data};
+                                        return { ...dt, teamMembers: result.data };
                                     }
                                     return dt;
                                 })
@@ -111,4 +111,4 @@ export const teamApi = apiSlice.injectEndpoints({
 
 });
 
-export const { useAddNewTeamMutation, useGetTeamsQuery,useDeleteTeamMutation,useUpdateTeamMutation,useGetTeamQuery } = teamApi;
+export const { useAddNewTeamMutation, useGetTeamsQuery, useDeleteTeamMutation, useUpdateTeamMutation, useGetTeamQuery } = teamApi;

@@ -5,7 +5,7 @@ const Task = ({id}) => {
     const title = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut enim pariatur nesciunt quia quae, et qui maxime adipisci voluptates quis. Quae odit voluptatem maxime dicta repellendus commodi nihil nemo vel.";
     return (
         <tr>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Thu Mar 30 2023</td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Thu Mar 30 2023</td>
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 cursor-progress" title={title}>{title.slice(0, 70)} ...</td>
             <td className="px-6 py-4 whitespace-nowrap">
                 <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Md imranul haque</span>
@@ -18,7 +18,7 @@ const Task = ({id}) => {
                 </Link>
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <select className='focus:outline-none text-red-500 font-bold cursor-pointer' defaultValue="pending">
+                <select className='focus:outline-none px-2 pb-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-green-800 cursor-pointer' defaultValue="pending">
                     <option value="pending">pending</option>
                     <option value="inProgress">inProgress</option>
                     <option value="completed">Completed</option>

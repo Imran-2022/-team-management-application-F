@@ -15,7 +15,7 @@ const Main = () => {
             <Route path="/projects/add/:addId" element={<AddTasksForm />} />
             <Route path="/projects/edit/:editId" element={<EditTasksForm />} />
             <Route path="/about" element={<About />}/>
-            <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
+            <Route path="/" element={<PrivateRoute><ProjectList /></PrivateRoute>} />
             <Route path="/teams" element={<PrivateRoute><TeamList /></PrivateRoute>} />
             <Route path="/projects" element={<PrivateRoute><ProjectList /></PrivateRoute>} />
             <Route path="/forget-password" element={<ForgotPassword />} />

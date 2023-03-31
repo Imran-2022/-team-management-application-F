@@ -4,7 +4,7 @@ import {  useUpdateTeamMutation } from '../../features/team/teamApi';
 
 export default function AddMemberModal({ open, control, id }) {
     const [updateTeam] = useUpdateTeamMutation();
-    console.log(id);
+    // console.log(id);
     const [email, setEmail] = useState("");
     const hanldeAddTeamMember = (e) => {
         e.preventDefault();
