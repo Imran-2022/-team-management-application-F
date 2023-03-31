@@ -8,11 +8,11 @@ export default function Modal({ open, control }) {
   const [teamColor, setTeamColor] = useState('')
 
   const handleForm = () => {
-    addNewTeam({ teamName, teamDetails, teamColor,teamMembers:[] })
+    addNewTeam({ teamName, teamDetails, teamColor, teamMembers: [] })
     control();
     setTeamColor('')
-      setTeamDetails('')
-      setTeamName("")
+    setTeamDetails('')
+    setTeamName("")
   }
 
   return (
