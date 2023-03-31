@@ -1,38 +1,64 @@
-import React from 'react';
+import {useState,useEffect} from 'react';
 import Layout from '../../Layout';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useGetTeamQuery } from '../../features/team/teamApi';
+import { useGetUserQuery } from '../../features/auth/authApi';
 
 const AddTasksForm = () => {
     const { addId } = useParams();
     const navigate = useNavigate();
+    const { data: project, isSuccess, isError, error, isLoading } = useGetTeamQuery(addId);
+    const { data: user, isSuccess: userSuccess } = useGetUserQuery()
+
+    const [projectName,setProjectName]=useState("")
+    const [assignTo,setAssignTo]=useState("")
+    const [tasks,setTasks]=useState("")
+    const [dateLine,setDateLine]=useState("")
+
+
+    useEffect(()=>{
+        if(project?.teamName) setProjectName(project?.teamName)
+    },[isSuccess])
+
     const hendleSubmitTask = (e) => {
         e.preventDefault();
-        navigate(`/projects/${addId}`)
+        const dt={projectName,assignTo,tasks,dateLine};
+        console.log(dt)
+        // navigate(`/projects/${addId}`)
     }
+   
+    const getActiveUser = user?.data.map(dt => {
+        const isTeamMember = project?.teamMembers?.includes(dt.email)
+        if (isTeamMember) {
+            return dt;
+        }
+    }).filter(d => d); // Filter out any undefined values
+
+    // console.log(getActiveUser)
 
     return (
         <Layout title="Add Task" className="bg-[#f5f7f9] h-[89.9vh] flex justify-center items-center">
             <div className='py-9 w-11/12'>
                 <form className="max-w-md mx-auto  border-2 p-6 bg-white" onSubmit={hendleSubmitTask}>
                     <div>
-                        <label for="project-name" className="block font-medium text-gray-700">Project Name</label>
-                        <input type="text" id="project-name" name="project-name" className="mt-1 border p-2 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder='defalut readonly' />
+                        <label htmlFor="project-name" className="block font-medium text-gray-700">Project Name</label>
+                        <input type="text" id="project-name" name="project-name" className="mt-1 border p-2 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder='defalut readonly' value={project?.teamName||""} readOnly/>
                     </div>
                     <div className="mt-4">
-                        <label for="assign-to" className="block font-medium text-gray-700">Assign To</label>
-                        <select id="assign-to" name="assign-to" className="mt-1 block w-full border-gray-300 bg-white rounded-md shadow-sm border p-2 focus:outline-none sm:text-sm">
-                            <option>Option 1</option>
-                            <option>Option 2</option>
-                            <option>Option 3</option>
+                        <label htmlFor="assign-to" className="block font-medium text-gray-700">Assign To</label>
+                        <select id="assign-to" name="assign-to" onChange={(e)=>setAssignTo(e.target.value)}  className="mt-1 block w-full border-gray-300 bg-white rounded-md shadow-sm border p-2 focus:outline-none sm:text-sm">
+                            {
+                                getActiveUser?.map((dt, idx)=><option value={dt._id} key={idx}>{dt.name}</option>)
+                            }
                         </select>
                     </div>
                     <div className="mt-4">
-                        <label for="task" className="block font-medium text-gray-700">Task </label>
-                        <textarea id="task" name="task" rows="4" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                        <label htmlFor="task" className="block font-medium text-gray-700">Task </label>
+                        <textarea id="task" name="task" value={tasks} onChange={(e)=>setTasks(e.target.value)} rows="4" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
                     </div>
                     <div className="mt-4">
-                        <label for="deadline" className="block font-medium text-gray-700">Deadline</label>
-                        <input type="date" id="deadline" name="deadline" className="mt-1 border p-2 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md cursor-pointer" />
+                        <label htmlFor="deadline" className="block font-medium text-gray-700">Deadline</label>
+                        <input type="date" id="deadline" onChange={(e)=>setDateLine(e.target.value)} name="deadline" className="mt-1 border p-2 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md cursor-pointer" />
                     </div>
                     <div className="mt-8">
 

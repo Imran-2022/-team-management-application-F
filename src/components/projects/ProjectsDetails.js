@@ -53,7 +53,7 @@ const ProjectsDetails = () => {
 
                         <div className='flex gap-4 flex-col py-2'>
                             {
-                                (getActiveUser?.length) ? (getActiveUser.map((dt, idx) => <p className='px-3 break-words justify-items-start items-center flex gap-1 text-xs font-medium text-gray-500 uppercase tracking-wider' key={idx}><img className='w-6' src={profileIcon} alt="" /> {dt}</p>)) : <p>No active members yet !</p>
+                                (getActiveUser?.length) ? (getActiveUser.map((dt, idx) => <p className='px-3 break-words justify-items-start items-center flex gap-1 text-xs font-medium text-gray-500 uppercase tracking-wider' key={idx}><img className='w-6' src={idx/2==0 ? 'http://robohash.org/stefan-one':'http://robohash.org/stefan-two'} alt="" /> {dt}</p>)) : <p>No active members yet !</p>
                             }
                         </div>
 
