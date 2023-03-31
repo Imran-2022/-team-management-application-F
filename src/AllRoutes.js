@@ -18,6 +18,7 @@ import TeamList from "./components/teams/TeamList";
 import ProjectList from "./components/projects/ProjectList";
 import ProjectsDetails from "./components/projects/ProjectsDetails";
 import AddTasksForm from "./components/projects/AddTasksForm";
+import EditTasksForm from "./components/projects/EditTasksForm";
 
 
-export { NotFound, Login, Register, MenuBar, Home, Layout, About, ScrollToTop, ForgotPassword, useAuthCheck, PrivateRoute, PublicRoute, ProjectList, PleaseVerifyEmailPage, EmailVerificationLandingPage, PasswordResetLandingPage, TeamList, ProjectsDetails, AddTasksForm}
+export { NotFound, Login, Register, MenuBar, Home, Layout, About, ScrollToTop, ForgotPassword, useAuthCheck, PrivateRoute, PublicRoute, ProjectList, PleaseVerifyEmailPage, EmailVerificationLandingPage, PasswordResetLandingPage, TeamList, ProjectsDetails, AddTasksForm,EditTasksForm}

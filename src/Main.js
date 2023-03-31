@@ -1,4 +1,4 @@
-import { NotFound, Login, Register, Home, About, useAuthCheck, PrivateRoute, PublicRoute, ForgotPassword, TeamList,ProjectsDetails, Projects, PleaseVerifyEmailPage, EmailVerificationLandingPage, PasswordResetLandingPage, ProjectList, AddTasksForm } from "./AllRoutes";
+import { NotFound, Login, Register, Home, About, useAuthCheck, PrivateRoute, PublicRoute, ForgotPassword, TeamList,ProjectsDetails, Projects, PleaseVerifyEmailPage, EmailVerificationLandingPage, PasswordResetLandingPage, ProjectList, AddTasksForm, EditTasksForm } from "./AllRoutes";
 import { Routes, Route } from "react-router-dom";
 
 const Main = () => {
@@ -13,6 +13,7 @@ const Main = () => {
             <Route path="/verify-email" element={<PleaseVerifyEmailPage />} />
             <Route path="/register" element={<Register />} />
             <Route path="/projects/add/:addId" element={<AddTasksForm />} />
+            <Route path="/projects/edit/:editId" element={<EditTasksForm />} />
             <Route path="/about" element={<About />}/>
             <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
             <Route path="/teams" element={<PrivateRoute><TeamList /></PrivateRoute>} />

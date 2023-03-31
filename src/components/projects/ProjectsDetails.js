@@ -79,8 +79,7 @@ const ProjectsDetails = () => {
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
-                                <Task />
-                                <Task />
+                                <Task id={_id} />
                                 <Task />
                                 <Task />
                                 <Task />

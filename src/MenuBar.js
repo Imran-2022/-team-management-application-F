@@ -23,7 +23,7 @@ const MenuBar = () => {
         <div>
             <nav className="bg-white border-gray-200 lg:mx-60 sm:px-4 py-2.5 rounded">
                 <div className="container flex flex-wrap items-center justify-between mx-auto">
-                    <Link to='/teams' className="flex items-center">
+                    <Link to='/projects' className="flex items-center">
                         <img width="30px" src={teamicon} alt="" />
                     </Link>
 

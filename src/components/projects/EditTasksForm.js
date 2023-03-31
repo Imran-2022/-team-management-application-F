@@ -2,12 +2,12 @@ import React from 'react';
 import Layout from '../../Layout';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const AddTasksForm = () => {
-    const { addId } = useParams();
+const EditTasksForm = () => {
+    const { editId } = useParams();
     const navigate = useNavigate();
     const hendleSubmitTask = (e) => {
         e.preventDefault();
-        navigate(`/projects/${addId}`)
+        navigate(`/projects/${editId}`)
     }
 
     return (
@@ -41,7 +41,7 @@ const AddTasksForm = () => {
                                 stroke="currentColor" className="w-6 h-6 group-hover:text-indigo-500">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
-                            ADD TASK
+                            UPDATE TASK
                         </button>
                     </div>
                 </form>
@@ -50,4 +50,4 @@ const AddTasksForm = () => {
     );
 };
 
-export default AddTasksForm;
+export default EditTasksForm;
