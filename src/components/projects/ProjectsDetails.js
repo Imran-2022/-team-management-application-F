@@ -51,9 +51,15 @@ const ProjectsDetails = () => {
                                     <span className="group-hover:text-indigo-500">Completed Tasks: {0}</span>
                                 </div>
                             </div>
+                            <div className='flex gap-2 justify-center items-center'>
+                                <input type="text" placeholder="Search task " class="px-2  border-gray-300 focus:outline-none" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 17l-5-5m0 0l5-5m-5 5h12" />
+                                </svg>
+                            </div>
 
                             <div className="justify-between space-y-2 md:flex md:space-y-0 bg-blue-400 hover:bg-blue-500 text-white text-sm py-1 px-2 rounded">
-                                <Link to='/add' className="flex">
+                                <Link to={`/projects/add/${_id}`} className="flex">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
                                         stroke="currentColor" className="w-6 h-6 group-hover:text-indigo-500">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
