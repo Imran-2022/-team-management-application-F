@@ -94,8 +94,11 @@ export const authApi = apiSlice.injectEndpoints({
                 body: {new_password},
             }),
         }),
+        getUser:builder.query({
+            query: () => '/auth/user',
+        })
 
     })
 });
 
-export const { useLoginMutation, useRegisterMutation,useVerifyEmailMutation,useResetEmailMutation,useResetPasswordMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation,useVerifyEmailMutation,useResetEmailMutation,useResetPasswordMutation,useGetUserQuery } = authApi;
