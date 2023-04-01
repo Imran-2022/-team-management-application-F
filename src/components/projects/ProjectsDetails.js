@@ -22,6 +22,18 @@ const ProjectsDetails = () => {
         }
     }).filter(name => name); // Filter out any undefined values
 
+    // get valid tasks -
+
+    const userTasks = tasks?.map(dt => {
+        if (dt.project_Id==project?._id) {
+            return dt;
+        }
+    }).filter(d => d); 
+
+    // console.log(project?._id);
+    // console.log(tasks);
+    // console.log(userTasks);
+
     return (
         <Layout title="Team List" className="bg-[#f5f7f9] h-[89.9vh]">
 
@@ -107,7 +119,7 @@ const ProjectsDetails = () => {
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {
-                                    tasks?.map((dt,idx)=> <Task key={idx} dt={dt} id={_id} />)
+                                    userTasks?.map((dt,idx)=> <Task key={idx} dt={dt} id={_id} />)
                                 }
                             </tbody>
                         </table>
