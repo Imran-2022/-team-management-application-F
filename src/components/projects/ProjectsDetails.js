@@ -5,11 +5,14 @@ import Layout from '../../Layout';
 import profileIcon from '../../assets/profile.png'
 import { useGetUserQuery } from '../../features/auth/authApi';
 import Task from './Task';
+import { useGetTasksQuery } from '../../features/tasks/tasksApi';
 
 const ProjectsDetails = () => {
     const { projectId } = useParams();
     const { data: project, isSuccess, isError, error, isLoading } = useGetTeamQuery(projectId);
     const { data: user, isSuccess: userSuccess } = useGetUserQuery()
+    const {data:tasks}=useGetTasksQuery()
+
     const { teamColor, teamMembers, teamName, _id } = project || {};
 
     const getActiveUser = user?.data.map(dt => {
@@ -53,7 +56,7 @@ const ProjectsDetails = () => {
 
                         <div className='flex gap-4 flex-col py-2'>
                             {
-                                (getActiveUser?.length) ? (getActiveUser.map((dt, idx) => <p className='px-3 break-words justify-items-start items-center flex gap-1 text-xs font-medium text-gray-500 uppercase tracking-wider' key={idx}><img className='w-6' src={idx/2==0 ? 'http://robohash.org/stefan-one':'http://robohash.org/stefan-two'} alt="" /> {dt}</p>)) : <p>No active members yet !</p>
+                                (getActiveUser?.length) ? (getActiveUser.map((dt, idx) => <p className='px-3 break-words justify-items-start items-center flex gap-1 text-xs font-medium text-gray-500 uppercase tracking-wider' key={idx}><img className='w-6' src={idx/2==0 ? 'http://robohash.org/stefan-one':'http://robohash.org/stefan-two'} alt="" /> {dt}</p>)) : <p className='px-3'>No active members yet !</p>
                             }
                         </div>
 
@@ -103,14 +106,9 @@ const ProjectsDetails = () => {
                                 </tr>
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
-                                <Task id={_id} />
-                                <Task id={_id} />
-                                <Task id={_id} />
-                                <Task id={_id} />
-                                <Task id={_id} />
-                                <Task id={_id} />
-                                <Task id={_id} />
-                                <Task id={_id} />
+                                {
+                                    tasks?.map((dt,idx)=> <Task key={idx} dt={dt} id={_id} />)
+                                }
                             </tbody>
                         </table>
                     </div>
