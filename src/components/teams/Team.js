@@ -2,13 +2,13 @@ import React from 'react';
 import { FaUsers } from 'react-icons/fa';
 import TeamOptions from './TeamOptions';
 
-const Team = ({dt={}}) => {
+const Team = ({dt={},addM}) => {
 
     const {teamColor,teamDetails,teamName,createdAt,_id,teamMembers}=dt;
 
     return (
-        <div className="relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100">
-            <TeamOptions id={_id} />
+        <div className={`relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100 ${addM&&"border-2 border-blue-300"}`}>
+           {addM&&<TeamOptions id={_id} />}
             <div className="relative px-4 py-1 flex items-center justify-center">
                 <span
                     className={`absolute w-full h-full rounded-full`}

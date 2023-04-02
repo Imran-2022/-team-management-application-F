@@ -37,11 +37,11 @@ const MenuBar = () => {
                         <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
                            
                             <li>
-                                <NavLink to={`/projects`} className="block py-2 pl-3 pr-4 text-gray-700 rounded md:bg-transparent md:hover:text-blue-700 md:p-0 " aria-current="page">projects</NavLink>
+                                <NavLink to={`/projects`} className="block py-2 pl-3 pr-4 text-gray-700 rounded md:bg-transparent md:hover:text-blue-700 md:p-0 " aria-current="page">task flow</NavLink>
                             </li>
 
                             <li>
-                                <NavLink to={`/teams`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">teams</NavLink>
+                                <NavLink to={`/teams`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">my teams</NavLink>
                             </li>
                             <li>
                                 <NavLink to={`/about`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">about</NavLink>

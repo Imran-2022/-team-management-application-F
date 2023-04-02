@@ -7,12 +7,16 @@ import { useGetUserQuery } from '../../features/auth/authApi';
 import Task from './Task';
 import { useGetTasksQuery } from '../../features/tasks/tasksApi';
 import TaskStatus from './TaskStatus';
+import { useSelector } from 'react-redux';
 
 const ProjectsDetails = () => {
+    const { user: loggedUser } = useSelector(state => state.auth);
+    // console.log(loggedUser);
+
     const { projectId } = useParams();
     const { data: project, isSuccess, isError, error, isLoading } = useGetTeamQuery(projectId);
     const { data: user, isSuccess: userSuccess } = useGetUserQuery()
-    const {data:tasks}=useGetTasksQuery()
+    const { data: tasks } = useGetTasksQuery()
 
     const { teamColor, teamMembers, teamName, _id } = project || {};
 
@@ -26,10 +30,10 @@ const ProjectsDetails = () => {
     // get valid tasks -
 
     const userTasks = tasks?.map(dt => {
-        if (dt.project_Id==project?._id) {
+        if (dt.project_Id == project?._id) {
             return dt;
         }
-    }).filter(d => d); 
+    }).filter(d => d);
 
     // console.log(project?._id);
     // console.log(tasks);
@@ -69,24 +73,24 @@ const ProjectsDetails = () => {
 
                         <div className='flex gap-4 flex-col py-2'>
                             {
-                                (getActiveUser?.length) ? (getActiveUser.map((dt, idx) => <p className='px-3 break-words justify-items-start items-center flex gap-1 text-xs font-medium text-gray-500 uppercase tracking-wider' key={idx}><img className='w-6' src={idx/2==0 ? 'http://robohash.org/stefan-one':'http://robohash.org/stefan-two'} alt="" /> {dt}</p>)) : <p className='px-3'>No active members yet !</p>
+                                (getActiveUser?.length) ? (getActiveUser.map((dt, idx) => <p className='px-3 break-words justify-items-start items-center flex gap-1 text-xs font-medium text-gray-500 uppercase tracking-wider' key={idx}><img className='w-6' src={idx / 2 == 0 ? 'http://robohash.org/stefan-one' : 'http://robohash.org/stefan-two'} alt="" /> {dt}</p>)) : <p className='px-3'>No active members yet !</p>
                             }
                         </div>
 
                     </div>
                     <div className='border border-gray-300 rounded-sm col-span-4 p-1 bg-white'>
                         <div className='flex justify-between items-center'>
-                            <TaskStatus task={userTasks}/>
+                            <TaskStatus task={userTasks} />
                             <div className="justify-between space-y-2 md:flex md:space-y-0 space-x-12">
-                                
+
                                 <div className=' bg-cyan-200 hover:bg-cyan-300  text-sm py-1 px-2 rounded'>
-                                    <Link to={`/projects/add/${_id}`} className="flex">
+                                    {(getActiveUser?.[0] == loggedUser?.name) ? <Link to={`/projects/add/${_id}`} className="flex">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
                                             stroke="currentColor" className="w-6 h-6 group-hover:text-indigo-500">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                         </svg>
                                         <span className="group-hover:text-indigo-500">Assign New Task</span>
-                                    </Link>
+                                    </Link> : <button disabled className="group-hover:text-indigo-500">Assign New Task</button>}
                                 </div>
                             </div>
                         </div>
@@ -102,7 +106,7 @@ const ProjectsDetails = () => {
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {
-                                    userTasks?.map((dt,idx)=> <Task key={idx} dt={dt} id={_id} />)
+                                    userTasks?.map((dt, idx) => <Task key={idx} dt={dt} id={_id} />)
                                 }
                             </tbody>
                         </table>

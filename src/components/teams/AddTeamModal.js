@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useAddNewTeamMutation } from '../../features/team/teamApi'
+import { useSelector } from 'react-redux';
 export default function Modal({ open, control }) {
   const [addNewTeam] = useAddNewTeamMutation()
+  const { user: loggedUser } = useSelector(state => state.auth);
 
   const [teamName, setTeamName] = useState('')
   const [teamDetails, setTeamDetails] = useState('')
   const [teamColor, setTeamColor] = useState('')
 
   const handleForm = () => {
-    addNewTeam({ teamName, teamDetails, teamColor, teamMembers: [] })
+    addNewTeam({ teamName, teamDetails, teamColor, teamMembers: [loggedUser?.email] })
     control();
     setTeamColor('')
     setTeamDetails('')
