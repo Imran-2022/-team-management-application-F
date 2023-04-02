@@ -90,12 +90,7 @@ const ProjectsDetails = () => {
 
 
                             <div className="justify-between space-y-2 md:flex md:space-y-0 space-x-12">
-                                <div className='flex gap-2 justify-center items-center border'>
-                                    <input type="text" placeholder="Search task " className="px-2 border-gray-300 focus:outline-none" />
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 17l-5-5m0 0l5-5m-5 5h12" />
-                                    </svg>
-                                </div>
+                                
                                 <div className=' bg-cyan-200 hover:bg-cyan-300  text-sm py-1 px-2 rounded'>
                                     <Link to={`/projects/add/${_id}`} className="flex">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"

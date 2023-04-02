@@ -1,13 +1,19 @@
-import {createSlice} from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 
-const initialState={
-    token:[],
+const initialState = {
+    searchProjects: '',
 };
 
-const teamSlice =createSlice({
-    name:'auth',
+const teamSlice = createSlice({
+    name: "tasks",
     initialState,
-    reducers:{}
-})
+    reducers: {
+        filterBySearch: (state, action) => {
+            state.searchProjects = action.payload;
+        },
+    },
+});
+
+export const { filterBySearch } = teamSlice.actions;
 
 export default teamSlice.reducer;
