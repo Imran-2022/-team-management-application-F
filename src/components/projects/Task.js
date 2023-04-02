@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useGetUserQuery } from '../../features/auth/authApi';
+import { useEditTasksStatusMutation } from '../../features/tasks/tasksApi';
 
 const Task = ({ dt={}, id }) => {
-    const { projectName, assignTo, tasks, dateLine, project_Id, status } = dt;
+  const [editTasksStatus, { isSuccess }] = useEditTasksStatusMutation();
+
+    const { projectName, assignTo, tasks, dateLine, project_Id, status,_id } = dt;
+    // console.log(dt);
     const { data: user, isSuccess: userSuccess } = useGetUserQuery()
 
     const getMemberName = user?.data.find(dt => dt._id == assignTo)
@@ -24,7 +28,15 @@ const Task = ({ dt={}, id }) => {
                 }
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <select className='focus:outline-none px-2 pb-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-green-800 cursor-pointer' defaultValue={status}>
+                <select onChange={
+          (e) => {
+            editTasksStatus({
+              id:dt?._id,
+              data: { ...dt, status: e.target.value }
+            })
+
+          }
+        } className='focus:outline-none px-2 pb-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-green-800 cursor-pointer' defaultValue={status}>
                     <option value="pending">pending</option>
                     <option value="inProgress">inProgress</option>
                     <option value="completed">Completed</option>
