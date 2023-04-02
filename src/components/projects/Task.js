@@ -37,9 +37,9 @@ const Task = ({ dt={}, id }) => {
 
           }
         } className='focus:outline-none px-2 pb-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-green-800 cursor-pointer' defaultValue={status}>
-                    <option value="pending">pending</option>
-                    <option value="inProgress">inProgress</option>
-                    <option value="completed">Completed</option>
+                    <option value="pending" selected={status === 'pending'} >pending</option>
+          <option value="inProgress" selected={status === 'inProgress'}>inProgress</option>
+          <option value="completed" selected={status === 'completed'}>Completed</option>
                 </select>
             </td>
         </tr>

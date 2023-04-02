@@ -6,6 +6,7 @@ import profileIcon from '../../assets/profile.png'
 import { useGetUserQuery } from '../../features/auth/authApi';
 import Task from './Task';
 import { useGetTasksQuery } from '../../features/tasks/tasksApi';
+import TaskStatus from './TaskStatus';
 
 const ProjectsDetails = () => {
     const { projectId } = useParams();
@@ -75,20 +76,7 @@ const ProjectsDetails = () => {
                     </div>
                     <div className='border border-gray-300 rounded-sm col-span-4 p-1 bg-white'>
                         <div className='flex justify-between items-center'>
-                            <div className='flex gap-4'>
-
-                                <div className="justify-between space-y-2 md:flex md:space-y-0 bg-cyan-200 hover:bg-cyan-300  text-sm py-1 px-2 rounded">
-                                    <span className="group-hover:text-indigo-500">Pending Tasks: {0}</span>
-                                </div>
-                                <div className="justify-between space-y-2 md:flex md:space-y-0 bg-cyan-200 hover:bg-cyan-300   text-sm py-1 px-2 rounded">
-                                    <span className="group-hover:text-indigo-500">In Process Tasks: {0}</span>
-                                </div>
-                                <div className="justify-between space-y-2 md:flex md:space-y-0 bg-cyan-200 hover:bg-cyan-300   text-sm py-1 px-2 rounded">
-                                    <span className="group-hover:text-indigo-500">Completed Tasks: {0}</span>
-                                </div>
-                            </div>
-
-
+                            <TaskStatus task={userTasks}/>
                             <div className="justify-between space-y-2 md:flex md:space-y-0 space-x-12">
                                 
                                 <div className=' bg-cyan-200 hover:bg-cyan-300  text-sm py-1 px-2 rounded'>
