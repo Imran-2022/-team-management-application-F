@@ -7,6 +7,9 @@ export const tasksApi = apiSlice.injectEndpoints({
         getTasks: builder.query({
             query: () => '/tasks',
         }),
+        getTask: builder.query({
+            query: (id) => `/tasks/${id}`,
+        }),
         getTeam: builder.query({
             query: (id) => `/team/${id}`,
             providesTags: ['team'],
@@ -21,7 +24,7 @@ export const tasksApi = apiSlice.injectEndpoints({
                 try {
                     const result = await queryFulfilled;
                     console.log(result.data);
-                    
+
                     // start pessimistic way ->
                     if (result.data) {
                         dispatch(
@@ -177,4 +180,4 @@ export const tasksApi = apiSlice.injectEndpoints({
 
 });
 
-export const { useAddNewTaskMutation,useGetTasksQuery,useEditTasksStatusMutation,useDeleteTasksMutation } = tasksApi;
+export const { useAddNewTaskMutation, useGetTasksQuery, useEditTasksStatusMutation, useDeleteTasksMutation,useGetTaskQuery } = tasksApi;

@@ -1,15 +1,19 @@
 import React from 'react';
 import Layout from '../../Layout';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useGetTaskQuery } from '../../features/tasks/tasksApi';
 
 const EditTasksForm = () => {
     const { editId } = useParams();
     const navigate = useNavigate();
+    const {getTask,isSuccess:getTaskSuccess}=useGetTaskQuery(editId);
+
     const hendleSubmitTask = (e) => {
         e.preventDefault();
         navigate(`/projects/${editId}`)
     }
 
+    console.log(getTask);
     return (
         <Layout title="Add Task" className="bg-[#f5f7f9] h-[89.9vh] flex justify-center items-center">
             <div className='py-9 w-11/12'>
