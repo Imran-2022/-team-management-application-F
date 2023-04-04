@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import Layout from '../../Layout';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useGetTeamQuery } from '../../features/team/teamApi';
+import { useAddTeamMeetMutation, useGetTeamQuery } from '../../features/team/teamApi';
 
 const MeetSchedule = () => {
     const {mId}=useParams()
     const navigate = useNavigate();
-    const [scheduleNow,setScheduleNow]=useState();
-    const [scheduleLater,setScheduleLater]=useState();
+    const [addTeamMeet]=useAddTeamMeetMutation();
+    const [scheduleNow,setScheduleNow]=useState("");
+    const [scheduleLater,setScheduleLater]=useState("");
     const { data: project, isSuccess, isError, error, isLoading } = useGetTeamQuery(mId);
 
     const handleScheduleM = (e) => {
         e.preventDefault()
         const dt={scheduleNow}
-        console.log(scheduleNow,scheduleLater,mId)
-        // navigate(`/projects/${mId}`)
+        console.log(scheduleNow,mId)
+        addTeamMeet({id:mId,data:dt})
+        navigate(`/projects/${mId}`)
     }
     // console.log(project)
     return (
@@ -27,7 +29,7 @@ const MeetSchedule = () => {
                     </div>
                     <div className="mt-4">
                         <label for="assign-to" className="block font-medium text-gray-700">Just for now</label>
-                        <input type="text" name="scheduleNow" className="mt-1 border p-2 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder='schedule link' value={scheduleNow} onChange={(e)=>setScheduleNow(e.target.value)} />
+                        <input type="text" name="scheduleNow" className="mt-1 border p-2 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder='meet link' value={scheduleNow} onChange={(e)=>setScheduleNow(e.target.value)} />
                     </div>
                     <div className="mt-4">
                         <label for="assign-to" className="block font-medium text-gray-700">Schedule Meeting</label>

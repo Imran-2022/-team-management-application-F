@@ -174,8 +174,20 @@ export const teamApi = apiSlice.injectEndpoints({
                 }
             },
         }),
+        getTeamMeet: builder.query({
+            query: (id) => `/team/meet/${id}`,
+            providesTags: ['team-meet'],
+        }),
+        addTeamMeet: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `/team/meet/${id}`,
+                method: 'POST',
+                body: data,
+            }),
+            invalidatesTags: ['team-meet']
+        }),
     })
 
 });
 
-export const { useAddNewTeamMutation, useGetTeamsQuery, useDeleteTeamMutation, useUpdateTeamMutation, useGetTeamQuery,useUpdateTeamSupervisorMutation,useUpdateSupervisorReviewMutation } = teamApi;
+export const { useAddNewTeamMutation, useGetTeamsQuery, useDeleteTeamMutation, useUpdateTeamMutation, useGetTeamQuery, useUpdateTeamSupervisorMutation, useUpdateSupervisorReviewMutation,useGetTeamMeetQuery,useAddTeamMeetMutation } = teamApi;

@@ -12,7 +12,7 @@ export const apiSlice = createApi({
             return headers;
         }
     }),
-    tagTypes: ['team'],
+    tagTypes: ['team','team-meet'],
     endpoints: (builder) => ({}),
 
 });
