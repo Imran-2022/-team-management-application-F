@@ -18,7 +18,7 @@ const TeamOptions = ({id}) => {
 
   return (
     <>
-      <Menu as="div" className="absolute top-0 right-0 inline-block text-left">
+      <Menu as="div" className="absolute cursor-pointer top-0 right-0 inline-block text-left">
         <Menu.Button className="absolute top-0 right-0 items-center justify-center hidden w-5 h-5 mt-3 mr-2 text-gray-500 rounded hover:bg-gray-200 hover:text-gray-700 group-hover:flex">
           <svg
             className="w-4 h-4 fill-current"

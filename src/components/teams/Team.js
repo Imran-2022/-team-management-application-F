@@ -1,25 +1,30 @@
 import React from 'react';
 import { FaUsers } from 'react-icons/fa';
 import TeamOptions from './TeamOptions';
+import { Link } from 'react-router-dom';
 
-const Team = ({dt={},addM}) => {
+const Team = ({ dt = {}, addM }) => {
 
-    const {teamColor,teamDetails,teamName,createdAt,_id,teamMembers}=dt;
+    const { teamColor, teamDetails, teamName, createdAt, _id, teamMembers } = dt;
 
     return (
-        <div className={`relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100 ${addM&&"border-2 border-blue-300"}`}>
-           {addM&&<TeamOptions id={_id} />}
+        <div className={`relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg  bg-opacity-90 group hover:bg-opacity-100 ${addM && "border-2 border-blue-300"}`}>
+            {addM && <TeamOptions id={_id} />}
             <div className="relative px-4 py-1 flex items-center justify-center">
                 <span
                     className={`absolute w-full h-full rounded-full`}
                     style={{
-                        backgroundColor: teamColor|| 'mediumseagreen',
+                        backgroundColor: teamColor || 'mediumseagreen',
                         opacity: 0.1,
                     }}
                 ></span>
                 <span className="text-xs font-semibold">{teamName}</span>
             </div>
-            <p className="mt-3 text-sm font-medium">{teamDetails?.slice(0,90)} ....</p>
+            {
+                <Link to={`/projects/${_id}`} className='cursor-pointer'>
+                    <p className="mt-3 text-sm font-medium">{teamDetails?.slice(0, 90)} ....</p>
+                </Link>
+            }
             <div className="flex items-center w-full mt-3 text-xs font-medium text-gray-400">
                 <div className="w-full flex items-center justify-between">
                     <div className="flex items-center">
@@ -41,7 +46,7 @@ const Team = ({dt={},addM}) => {
                     </div>
                     <div className="flex items-center">
                         <FaUsers className="w-4 h-4 mr-1 fill-gray-300" />
-                        <span className="leading-none">{teamMembers?.length||0}</span>
+                        <span className="leading-none">{teamMembers?.length || 0}</span>
                     </div>
                 </div>
             </div>
