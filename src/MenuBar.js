@@ -25,7 +25,7 @@ const MenuBar = () => {
     return (
         <div>
             
-            <nav className="bg-white border-gray-200 lg:mx-60 sm:px-4 py-2.5 rounded">
+            <nav className="bg-white border-gray-200 lg:mx-60 sm:px-4 py-2.5 rounded capitalize">
                 <div className="container flex flex-wrap items-center justify-between mx-auto">
                     <Link to='/projects' className="flex items-center">
                         <img width="30px" src={teamicon} alt="" />
@@ -41,7 +41,7 @@ const MenuBar = () => {
                         <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
                            
                             <li>
-                                <NavLink to={`/projects`} className="block py-2 pl-3 pr-4 text-gray-700 rounded md:bg-transparent md:hover:text-blue-700 md:p-0 " aria-current="page">task flow</NavLink>
+                                <NavLink to={`/projects`} className="block py-2 pl-3 pr-4 text-gray-700 rounded md:bg-transparent md:hover:text-blue-700 md:p-0 " aria-current="page">All Teams</NavLink>
                             </li>
 
                             <li>
