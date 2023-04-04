@@ -30,7 +30,7 @@ const ProjectsListTable = () => {
     }
 
     return (
-        <Layout title="project list view" className="bg-[#f5f7f9] min-h-[89.9vh]">
+        <Layout title="Projects List" className="bg-[#f5f7f9] min-h-[89.9vh]">
             <div className='w-10/12 m-auto py-2'>
                 <div className='py-8'> 
                     <table className="table-auto w-full border-collapse">

@@ -43,7 +43,7 @@ const TeamList = () => {
     }
 
     return (
-        <Layout title="Team List" className="bg-[#f5f7f9] h-[89.9vh]">
+        <Layout title="My Teams" className="bg-[#f5f7f9] min-h-[89.9vh]">
             <div className='w-10/12 m-auto flex py-2 justify-between pb-6'>
                 <p className='underline underline-offset-4'>Teams </p>
                 {

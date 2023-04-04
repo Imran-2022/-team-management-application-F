@@ -50,7 +50,7 @@ const ProjectList = () => {
     },[dispatch])
 
     return (
-        <Layout title="Team List" className="bg-[#f5f7f9] h-[89.9vh]">
+        <Layout title="All Teams" className="bg-[#f5f7f9] min-h-[89.9vh]">
             <div className='w-10/12 m-auto flex py-2 justify-between pb-6'>
                 <p className='underline underline-offset-4'>Projects </p>
                 <div className='flex gap-2 justify-center items-center border'>
@@ -60,7 +60,7 @@ const ProjectList = () => {
                     </svg>
                 </div>
             </div>
-            <div className='w-10/12 m-auto'>
+            <div className='w-10/12 m-auto pb-8'>
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4  mt-4 gap-6">
                     {content}
                 </div>

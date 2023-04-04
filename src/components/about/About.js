@@ -6,7 +6,7 @@ import img2 from '../../assets/officelogoabout1.png';
 const About = () => {
 
     return (
-        <Layout title="About Page" className="bg-[#f5f7f9] h-[89.9vh]">
+        <Layout title="About" className="bg-[#f5f7f9] h-[89.9vh]">
             <section className="mx-60 py-12">
                 <div className="bg-white shadow-sm rounded gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
                     <div className="font-light text-gray-500 sm:text-lg">
