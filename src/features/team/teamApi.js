@@ -91,7 +91,7 @@ export const teamApi = apiSlice.injectEndpoints({
                             (draft) => {
                                 return draft.map(dt => {
                                     if (dt._id == id) {
-                                        return { ...dt, teamMembers: result.data.review };
+                                        return { ...dt, teamMembers: result.data };
                                     }
                                     return dt;
                                 })

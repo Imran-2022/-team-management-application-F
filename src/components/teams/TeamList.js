@@ -16,7 +16,7 @@ const TeamList = () => {
     };
 
     const dtFilter = (dt) => {
-        if(dt.teamMembers.includes(loggedUser.email)){
+        if(dt?.teamMembers?.includes(loggedUser?.email)){
           return true;
         }
         return false;
@@ -38,8 +38,7 @@ const TeamList = () => {
     }
 
     if (!isLoading && !isError && teams?.length > 0) {
-        content = teams
-            .filter(dtFilter)
+        content = teams?.filter(dtFilter)
             .map((dt) => <Team addM={dt?.teamMembers?.[0]==(loggedUser?.email)} key={dt._id} dt={dt} />);
     }
 
