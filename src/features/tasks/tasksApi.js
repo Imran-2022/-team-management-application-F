@@ -74,6 +74,37 @@ export const tasksApi = apiSlice.injectEndpoints({
 
             },
         }),
+        deleteTasks: builder.mutation({
+            query: (id) => ({
+                url: `/tasks/${id}`,
+                method: "DELETE",
+            }),
+
+            async onQueryStarted(id, { queryFulfilled, dispatch }) {
+
+                // Optimistic way start
+
+                // deletedCount
+
+                const patchResult = dispatch(
+                    apiSlice.util.updateQueryData(
+                        'getTasks',
+                        undefined,
+                        (draft) => {
+                            return draft.filter(dt => dt._id != id)
+                        }
+                    )
+                )
+                try {
+                    await queryFulfilled;
+                } catch (err) {
+                    patchResult.undo();
+                }
+
+                // Optimistic way end
+
+            },
+        }),
         updateTeam: builder.mutation({
             query: ({ id, data }) => ({
                 url: `/team/${id}`,
@@ -146,4 +177,4 @@ export const tasksApi = apiSlice.injectEndpoints({
 
 });
 
-export const { useAddNewTaskMutation,useGetTasksQuery,useEditTasksStatusMutation } = tasksApi;
+export const { useAddNewTaskMutation,useGetTasksQuery,useEditTasksStatusMutation,useDeleteTasksMutation } = tasksApi;

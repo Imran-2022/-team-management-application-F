@@ -10,7 +10,6 @@ import ForgotPassword from "./components/auth/ForgotPassword";
 import useAuthCheck from "./hooks/useAuthCheck";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
-
 import PleaseVerifyEmailPage from "./components/auth/PleaseVerifyEmailPage";
 import { EmailVerificationLandingPage } from "./components/auth/EmailVerificationLandingPage";
 import PasswordResetLandingPage from "./components/auth/PasswordResetLandingPage";
@@ -19,6 +18,8 @@ import ProjectList from "./components/projects/ProjectList";
 import ProjectsDetails from "./components/projects/ProjectsDetails";
 import AddTasksForm from "./components/projects/AddTasksForm";
 import EditTasksForm from "./components/projects/EditTasksForm";
+import MeetSchedule from "./components/projects/MeetSchedule";
+import ProjectsListTable from "./components/projects/ProjectsListTable";
 
 
-export { NotFound, Login, Register, MenuBar, Home, Layout, About, ScrollToTop, ForgotPassword, useAuthCheck, PrivateRoute, PublicRoute, ProjectList, PleaseVerifyEmailPage, EmailVerificationLandingPage, PasswordResetLandingPage, TeamList, ProjectsDetails, AddTasksForm,EditTasksForm}
+export { NotFound, Login, Register, MenuBar, Home, Layout, About, ScrollToTop, ForgotPassword, useAuthCheck, PrivateRoute, PublicRoute, ProjectList, PleaseVerifyEmailPage, EmailVerificationLandingPage, PasswordResetLandingPage, TeamList, ProjectsDetails, AddTasksForm,EditTasksForm,MeetSchedule,ProjectsListTable}

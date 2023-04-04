@@ -44,6 +44,9 @@ const MenuBar = () => {
                                 <NavLink to={`/teams`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">my teams</NavLink>
                             </li>
                             <li>
+                                <NavLink to={`/projects/list`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">projects List</NavLink>
+                            </li>
+                            <li>
                                 <NavLink to={`/about`} className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 ">about</NavLink>
                             </li>
                             {
