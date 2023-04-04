@@ -1,15 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useGetTeamMeetQuery } from '../../features/team/teamApi';
+import { useDeleteMeetMutation, useGetTeamMeetQuery } from '../../features/team/teamApi';
 
 const Meet = ({ id }) => {
 
-    console.log(id);
     // if it is not a meeting time , don't showing this button.
     const { data: getMeet, isSuccess, isError, error, isLoading } = useGetTeamMeetQuery(id);
+    const [deleteMeet]=useDeleteMeetMutation();
     const { project_id, scheduleNow } = getMeet || {}
-
-    console.log(scheduleNow);
+    // console.log(scheduleNow);
+    const handleEndMeet=()=>{
+        deleteMeet(id)
+    }
 
     return (
         <div className='flex gap-3'>
@@ -24,9 +26,9 @@ const Meet = ({ id }) => {
                 </Link>
             }
             {
-                scheduleNow && <Link to={`/projects/meet/${id}`} className="justify-between space-y-2 md:flex md:space-y-0 bg-black text-white  text-sm py-1 px-2 rounded">
+                scheduleNow && <button onClick={handleEndMeet} className="justify-between space-y-2 md:flex md:space-y-0 bg-black text-white  text-sm py-1 px-2 rounded">
                     <span className="group-hover:text-indigo-500">End Meet</span>
-                </Link>
+                </button>
             }
         </div>
     );

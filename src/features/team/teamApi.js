@@ -186,8 +186,15 @@ export const teamApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['team-meet']
         }),
+        deleteMeet: builder.mutation({
+            query: (id) => ({
+                url: `/team/meet/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ['team-meet']
+        }),
     })
 
 });
 
-export const { useAddNewTeamMutation, useGetTeamsQuery, useDeleteTeamMutation, useUpdateTeamMutation, useGetTeamQuery, useUpdateTeamSupervisorMutation, useUpdateSupervisorReviewMutation,useGetTeamMeetQuery,useAddTeamMeetMutation } = teamApi;
+export const { useAddNewTeamMutation, useGetTeamsQuery, useDeleteTeamMutation, useUpdateTeamMutation, useGetTeamQuery, useUpdateTeamSupervisorMutation, useUpdateSupervisorReviewMutation,useGetTeamMeetQuery,useAddTeamMeetMutation,useDeleteMeetMutation } = teamApi;
