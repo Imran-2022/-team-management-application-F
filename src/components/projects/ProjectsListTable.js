@@ -21,7 +21,7 @@ const ProjectsListTable = () => {
     }
 
     if (!isLoading && !isError && ProjectList?.length === 0) {
-        content = <p>No books found!</p>
+        content = <p>Not found!</p>
     }
 
     if (!isLoading && !isError && ProjectList?.length > 0) {

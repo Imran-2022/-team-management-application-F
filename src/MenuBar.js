@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { userLoggedOut } from './features/auth/authSlice';
 import useAuth from './hooks/useAuth';
@@ -7,6 +7,8 @@ import teamicon from './assets/teamicon.png'
 
 const MenuBar = () => {
     const [menuShow, setMenuShow] = useState(false)
+    const { user: loggedUser } = useSelector(state => state.auth);
+
     const handleMenuShow = () => {
         setMenuShow(!menuShow)
     }
@@ -18,9 +20,11 @@ const MenuBar = () => {
         localStorage.removeItem('auth');
         navigate("/login");
     }
+    
 
     return (
         <div>
+            
             <nav className="bg-white border-gray-200 lg:mx-60 sm:px-4 py-2.5 rounded">
                 <div className="container flex flex-wrap items-center justify-between mx-auto">
                     <Link to='/projects' className="flex items-center">
@@ -59,7 +63,7 @@ const MenuBar = () => {
 
                             {
                                 useAuth() && <li>
-                                    <span className="cursor-pointer block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 " onClick={handleLogOut}>LogOut</span>
+                                    <span className="cursor-pointer block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 " onClick={handleLogOut}>({loggedUser?.name.slice(0,20)}) LogOut</span>
                                 </li>
                             }
 

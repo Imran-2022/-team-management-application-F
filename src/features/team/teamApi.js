@@ -91,7 +91,74 @@ export const teamApi = apiSlice.injectEndpoints({
                             (draft) => {
                                 return draft.map(dt => {
                                     if (dt._id == id) {
-                                        return { ...dt, teamMembers: result.data };
+                                        return { ...dt, teamMembers: result.data.review };
+                                    }
+                                    return dt;
+                                })
+                            }
+                        )
+                    )
+
+                    // end pessimistic way ->
+
+                } catch (err) {
+                    // do nothing
+
+                }
+            },
+        }),
+        updateTeamSupervisor: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `/team/supervisor/${id}`,
+                method: "PATCH",
+                body: data,
+            }),
+            invalidatesTags: ['team'],
+            async onQueryStarted({ id, data }, { queryFulfilled, dispatch }) {
+                try {
+                    const result = await queryFulfilled;
+
+                    dispatch(
+                        apiSlice.util.updateQueryData(
+                            "getTeams",
+                            undefined,
+                            (draft) => {
+                                return draft.map(dt => {
+                                    if (dt._id == id) {
+                                        return { ...dt, reveiw: result.data };
+                                    }
+                                    return dt;
+                                })
+                            }
+                        )
+                    )
+
+                    // end pessimistic way ->
+
+                } catch (err) {
+                    // do nothing
+
+                }
+            },
+        }),
+        updateSupervisorReview: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `/team/supervisor/status/${id}`,
+                method: "PATCH",
+                body: data,
+            }),
+            invalidatesTags: ['team'],
+            async onQueryStarted({ id, data }, { queryFulfilled, dispatch }) {
+                try {
+                    const result = await queryFulfilled;
+                    dispatch(
+                        apiSlice.util.updateQueryData(
+                            "getTeams",
+                            undefined,
+                            (draft) => {
+                                return draft.map(dt => {
+                                    if (dt._id == id) {
+                                        return { ...dt, review: result.data.review };
                                     }
                                     return dt;
                                 })
@@ -111,4 +178,4 @@ export const teamApi = apiSlice.injectEndpoints({
 
 });
 
-export const { useAddNewTeamMutation, useGetTeamsQuery, useDeleteTeamMutation, useUpdateTeamMutation, useGetTeamQuery } = teamApi;
+export const { useAddNewTeamMutation, useGetTeamsQuery, useDeleteTeamMutation, useUpdateTeamMutation, useGetTeamQuery,useUpdateTeamSupervisorMutation,useUpdateSupervisorReviewMutation } = teamApi;

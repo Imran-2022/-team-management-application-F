@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useGetTeamQuery } from '../../features/team/teamApi';
+import { useGetTeamQuery, useUpdateTeamSupervisorMutation } from '../../features/team/teamApi';
 import Layout from '../../Layout';
 import { useGetUserQuery } from '../../features/auth/authApi';
 import Task from './Task';
@@ -12,7 +12,8 @@ import Meet from './Meet';
 const ProjectsDetails = () => {
     const { user: loggedUser } = useSelector(state => state.auth);
     // console.log(loggedUser);
-
+    const [updateTeamSupervisor] = useUpdateTeamSupervisorMutation();
+    const [supervisor,setSupervisor]=useState("");
     const { projectId } = useParams();
     const { data: project, isSuccess, isError, error, isLoading } = useGetTeamQuery(projectId);
     const { data: user, isSuccess: userSuccess } = useGetUserQuery()
@@ -44,6 +45,13 @@ const ProjectsDetails = () => {
 
     // console.log(getManager);
 
+    const handleAddSupervisor=(e)=>{
+        e.preventDefault();
+        const data={email:supervisor}
+        updateTeamSupervisor({ id:project?._id, data})
+        setSupervisor("");
+    }
+
     return (
         <Layout title="Team List" className="bg-[#f5f7f9] h-[89.9vh]">
 
@@ -61,11 +69,11 @@ const ProjectsDetails = () => {
                                 </tr>
                                 <tr>
                                     <th scope="col" className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team Members :</th>
-                                    <th scope="col" className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{project?.teamMembers.length}</th>
+                                    <th scope="col" className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{project?.teamMembers.length ||0}</th>
                                 </tr>
                                 <tr>
                                     <th scope="col" className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">inActive Members :</th>
-                                    <th scope="col" className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{project?.teamMembers.length - getActiveUser?.length}</th>
+                                    <th scope="col" className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{project?.teamMembers.length - getActiveUser?.length|| 0}</th>
                                 </tr>
                                 <tr>
                                     <th scope="col" className="p-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Active Team Members :</th>
@@ -77,14 +85,12 @@ const ProjectsDetails = () => {
                             <span className="text-xs font-medium uppercase tracking-wider "> <span className='text-xs'>P.Lead:</span> {getManager?.name || "none"} <span className='text-red-400 lowercase'><a href={`mailto:${getManager?.email}`}>{(getManager?.email)}</a></span></span>
                         </div>
                         {
-                            getManager?.email ? <div className="justify-between space-y-2 md:flex md:space-y-0 bg-cyan-200  text-sm py-1 px-2 rounded">
-                                <span className="text-xs font-medium uppercase tracking-wider "> <span className='text-xs'>project supervisor :</span> {getManager?.name || "none"} <span className='text-red-400 lowercase'><a href={`mailto:${getManager?.email}`}>{(getManager?.email)}</a></span></span>
-                            </div> : <div className="justify-between space-y-2 md:flex md:space-y-0 bg-cyan-200  text-sm py-1 px-2 rounded">
-                                <span className="text-xs font-medium uppercase tracking-wider ">project supervisor : <span className='text-red-400 lowercase'>
-                                    <form className="max-w-sm mx-auto">
+                            getManager?.email  &&<div className="justify-between space-y-2 md:flex md:space-y-0 bg-cyan-200  text-sm py-1 px-2 rounded">
+                                <span className="text-xs font-medium uppercase tracking-wider ">Add project supervisor : <span className='text-red-400 lowercase'>
+                                    <form className="max-w-sm mx-auto" onSubmit={handleAddSupervisor}>
                                         <div className="py-2">
                                             <input className="shadow  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                id="email" type="email" placeholder="supervisor@example.com" />
+                                                id="email" type="email" placeholder="supervisor@example.com"  value={supervisor} onChange={e=>setSupervisor(e.target.value)}/>
                                         </div>
                                     </form>
                                 </span></span>

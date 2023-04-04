@@ -31,7 +31,7 @@ const ProjectList = () => {
     }
 
     if (!isLoading && !isError && teams?.length === 0) {
-        content = <p>No books found!</p>
+        content = <p>Not found!</p>
     }
 
     if (!isLoading && !isError && teams?.length > 0) {

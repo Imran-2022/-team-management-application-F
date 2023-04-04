@@ -1,11 +1,13 @@
 import React from 'react';
 import { useGetUserQuery } from '../../features/auth/authApi';
 import { Link } from 'react-router-dom';
+import { useUpdateSupervisorReviewMutation } from '../../features/team/teamApi';
 
 const ListTable = ({ dt = {}, idx }) => {
-    console.log(dt);
+    // console.log(dt);
     const { teamName, teamMembers, supervisor, review } = dt;
     const { data: user, isSuccess: userSuccess } = useGetUserQuery()
+    const [updateSupervisorReview]=useUpdateSupervisorReviewMutation()
 
     const getActiveUser = user?.data.map(dt => {
         const isTeamMember = teamMembers?.includes(dt.email)
@@ -24,6 +26,11 @@ const ListTable = ({ dt = {}, idx }) => {
             return dt.name;
         }
     }).filter(name => name); // Filter out any undefined values
+
+    const updateProjectStatus=(abc)=>{
+        updateSupervisorReview(abc);
+    }
+
     return (
         <tr>
             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{idx + 1}</td>
@@ -40,10 +47,18 @@ const ListTable = ({ dt = {}, idx }) => {
                     getActiveSupervisor?.map((dt, idx) => <p>{idx + 1}. {dt}</p>)
                 }</td>
             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                <select className='cursor-pointer focus:outline-none p-1 text-xs rounded-sm  bg-red-100' defaultValue={review}>
-                    <option value="no reveiw given">No review given</option>
-                    <option value="update needed">updates needed</option>
-                    <option value="successfully completed">successfully Completed</option>
+                <select onChange={
+          (e) => {
+            updateProjectStatus({
+              id: dt?._id,
+              data: { ...dt, review: e.target.value }
+            })
+
+          }
+        } className='cursor-pointer focus:outline-none p-1 text-xs rounded-sm  bg-red-100' defaultValue={review}>
+                    <option value="no reveiw given" className='whitespace-nowrap text-sm font-medium text-gray-900'>No review given</option>
+                    <option value="update needed" className='whitespace-nowrap text-sm font-medium text-gray-900'>updates needed</option>
+                    <option value="successfully completed" className='whitespace-nowrap text-sm font-medium text-gray-900'>successfully Completed</option>
                 </select>
             </td>
         </tr>
